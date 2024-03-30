@@ -1,0 +1,200 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\controllers\\scriptscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\controllers\\scriptscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\controllers\\scripttypelookupscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\controllers\\scripttypelookupscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\controllers\\developerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\controllers\\developerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\models\\converttooldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\models\\converttooldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\models\\script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\models\\script.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\models\\developer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\models\\developer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\models\\scripttypelookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\models\\scripttypelookup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|c:\\users\\bbdnet3307\\desktop\\grad\\levelup3\\codeconvertertool\\codeconvertertool\\codeconvertertool\\codeconvertertool.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{B4C796E3-8727-43E9-A82B-EC53F021EAAF}|CodeConverterTool\\CodeConverterTool.csproj|solutionrelative:codeconvertertool\\codeconvertertool.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ScriptsController.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Controllers\\ScriptsController.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\Controllers\\ScriptsController.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Controllers\\ScriptsController.cs",
+              "RelativeToolTip": "CodeConverterTool\\Controllers\\ScriptsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-30T12:03:00.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ScripttypelookupsController.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Controllers\\ScripttypelookupsController.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\Controllers\\ScripttypelookupsController.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Controllers\\ScripttypelookupsController.cs",
+              "RelativeToolTip": "CodeConverterTool\\Controllers\\ScripttypelookupsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-30T12:02:28.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DevelopersController.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Controllers\\DevelopersController.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\Controllers\\DevelopersController.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Controllers\\DevelopersController.cs",
+              "RelativeToolTip": "CodeConverterTool\\Controllers\\DevelopersController.cs",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-30T11:56:34.348Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ConvertToolDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Models\\ConvertToolDbContext.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\Models\\ConvertToolDbContext.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Models\\ConvertToolDbContext.cs",
+              "RelativeToolTip": "CodeConverterTool\\Models\\ConvertToolDbContext.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-30T11:42:30.306Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Program.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\Program.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Program.cs",
+              "RelativeToolTip": "CodeConverterTool\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-29T15:35:18.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Script.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Models\\Script.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\Models\\Script.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Models\\Script.cs",
+              "RelativeToolTip": "CodeConverterTool\\Models\\Script.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-30T11:44:06.78Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Developer.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Models\\Developer.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\Models\\Developer.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Models\\Developer.cs",
+              "RelativeToolTip": "CodeConverterTool\\Models\\Developer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-30T11:44:02.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\appsettings.json",
+              "RelativeDocumentMoniker": "CodeConverterTool\\appsettings.json",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\appsettings.json",
+              "RelativeToolTip": "CodeConverterTool\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-29T15:00:29.521Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Scripttypelookup.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Models\\Scripttypelookup.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\Models\\Scripttypelookup.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\Models\\Scripttypelookup.cs",
+              "RelativeToolTip": "CodeConverterTool\\Models\\Scripttypelookup.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-30T11:44:09.834Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "CodeConverterTool\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\WeatherForecast.cs",
+              "RelativeToolTip": "CodeConverterTool\\WeatherForecast.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-29T15:35:07.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CodeConverterTool",
+              "DocumentMoniker": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj",
+              "RelativeDocumentMoniker": "CodeConverterTool\\CodeConverterTool.csproj",
+              "ToolTip": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj",
+              "RelativeToolTip": "CodeConverterTool\\CodeConverterTool.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-03-29T15:28:40.018Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
