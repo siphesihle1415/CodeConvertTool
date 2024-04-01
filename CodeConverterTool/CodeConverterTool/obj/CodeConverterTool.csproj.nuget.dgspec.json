@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj": {}
+    "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConvertTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj": {
+    "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConvertTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj",
+        "projectUniqueName": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConvertTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj",
         "projectName": "CodeConverterTool",
-        "projectPath": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj",
+        "projectPath": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConvertTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj",
         "packagesPath": "C:\\Users\\bbdnet3307\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\obj\\",
+        "outputPath": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConvertTool\\CodeConverterTool\\CodeConverterTool\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,6 +49,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNet.Identity.Owin": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.3, )",
@@ -81,6 +89,22 @@
               "target": "Package",
               "version": "[2.15.2, )"
             },
+            "Microsoft.Owin": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
+            "Microsoft.Owin.Cors": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
+            "Microsoft.Owin.Host.SystemWeb": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
+            "Microsoft.Owin.Security.OAuth": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.2, )"
@@ -88,6 +112,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.2, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[110.2.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

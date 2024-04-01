@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeConverterTool.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CodeConverterTool.Controllers
 {
@@ -20,14 +21,14 @@ namespace CodeConverterTool.Controllers
             _context = context;
         }
 
-        // GET: api/Developers
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Developer>>> GetDevelopers()
         {
             return await _context.Developers.ToListAsync();
         }
 
-        // GET: api/Developers/5
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Developer>> GetDeveloper(int id)
         {
@@ -41,8 +42,7 @@ namespace CodeConverterTool.Controllers
             return developer;
         }
 
-        // PUT: api/Developers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDeveloper(int id, Developer developer)
         {
@@ -72,8 +72,7 @@ namespace CodeConverterTool.Controllers
             return NoContent();
         }
 
-        // POST: api/Developers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
         public async Task<ActionResult<Developer>> PostDeveloper(Developer developer)
         {
@@ -83,7 +82,7 @@ namespace CodeConverterTool.Controllers
             return CreatedAtAction("GetDeveloper", new { id = developer.DevId }, developer);
         }
 
-        // DELETE: api/Developers/5
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDeveloper(int id)
         {

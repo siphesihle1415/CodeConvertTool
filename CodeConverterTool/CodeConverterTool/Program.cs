@@ -1,17 +1,27 @@
 using CodeConverterTool.Models;
-using Microsoft.AspNetCore.Authentication;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Web;
-using Microsoft.IdentityModel.Tokens;
-using System.Net.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.Authority = Environment.GetEnvironmentVariable("OPTIONS_AUTHORITY");
+    options.Audience = "https://localhost:7074/swagger/index.html/api";
+});
 
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddMvc();
 builder.Services.AddEndpointsApiExplorer();
@@ -22,31 +32,25 @@ builder.Services.AddDbContext<ConvertToolDbContext>(options => options.UseSqlSer
     )
 );
 
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
-//    {
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateIssuer = true,
- //           ValidateAudience = true,
-  //          ValidateLifetime = true,
-    //        ValidateIssuerSigningKey = true,
-      //      ValidIssuer = builder.Configuration["Jwt:Issuer"],
-//            ValidAudience = builder.Configuration["Jwt:Audience"],
-//            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-//        };
-//    });
-
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+var env = app.Environment;
+
+if (env.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+}
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

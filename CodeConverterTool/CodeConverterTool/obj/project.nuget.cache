@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fec0/3FVTKHzo3L2kULLVYfBOqIT0eUHRuoDRp+UeJk9cnhQMNPAbei4rHwQsGLp5tHaQNG+PMDFiHZHpr+fXQ==",
+  "dgSpecHash": "NXm2Qc6vWMp4Ivc7CTnCobUb1U0U0rCum9ThBHQ68c1AY0cCj/VVRbqZZwps1It8jV+i3qI9rxA4/JDhOABY1Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj",
+  "projectFilePath": "C:\\Users\\bbdnet3307\\Desktop\\grad\\LevelUp3\\CodeConvertTool\\CodeConverterTool\\CodeConverterTool\\CodeConverterTool.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
@@ -58,6 +58,10 @@
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.aspnet.cors\\5.0.0\\microsoft.aspnet.cors.5.0.0.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.4\\microsoft.aspnet.identity.core.2.2.4.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.aspnet.identity.owin\\2.2.4\\microsoft.aspnet.identity.owin.2.2.4.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.3\\microsoft.aspnetcore.authentication.google.8.0.3.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.3\\microsoft.aspnetcore.authentication.jwtbearer.8.0.3.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\8.0.3\\microsoft.aspnetcore.authentication.openidconnect.8.0.3.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.0-rc.2.23480.2\\microsoft.aspnetcore.cryptography.internal.8.0.0-rc.2.23480.2.nupkg.sha512",
@@ -127,6 +131,12 @@
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.net.stringtools\\17.8.3\\microsoft.net.stringtools.17.8.3.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.owin\\4.2.2\\microsoft.owin.4.2.2.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.owin.cors\\4.2.2\\microsoft.owin.cors.4.2.2.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.owin.host.systemweb\\4.2.2\\microsoft.owin.host.systemweb.4.2.2.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.owin.security\\4.2.2\\microsoft.owin.security.4.2.2.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.owin.security.cookies\\3.0.1\\microsoft.owin.security.cookies.3.0.1.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.owin.security.oauth\\4.2.2\\microsoft.owin.security.oauth.4.2.2.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\8.0.2\\microsoft.visualstudio.web.codegeneration.8.0.2.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\8.0.2\\microsoft.visualstudio.web.codegeneration.core.8.0.2.nupkg.sha512",
@@ -149,6 +159,8 @@
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\nuget.projectmodel\\6.9.1\\nuget.projectmodel.6.9.1.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\owin\\1.0.0\\owin.1.0.0.nupkg.sha512",
+    "C:\\Users\\bbdnet3307\\.nuget\\packages\\restsharp\\110.2.0\\restsharp.110.2.0.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
@@ -192,5 +204,106 @@
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\bbdnet3307\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Cors 5.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Cors",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Identity.Core 2.2.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Identity.Core",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Identity.Owin 2.2.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Identity.Owin",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin.Cors 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin.Cors",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin.Host.SystemWeb 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin.Host.SystemWeb",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin.Security 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin.Security",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin.Security.Cookies 3.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin.Security.Cookies",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Owin.Security.OAuth 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Owin.Security.OAuth",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Owin",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

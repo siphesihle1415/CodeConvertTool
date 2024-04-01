@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeConverterTool.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CodeConverterTool.Controllers
 {
@@ -20,7 +21,7 @@ namespace CodeConverterTool.Controllers
             _context = context;
         }
 
-        // GET: api/Scripts
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Script>>> GetScripts()
         {
