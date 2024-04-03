@@ -1,13 +1,13 @@
--- Insert data into scripttypelookup
-INSERT INTO scripttypelookup (type) VALUES ('Bash'), ('Python');
+-- Insert data into ScriptType
+INSERT INTO ScriptType (TypeName) VALUES ('Bash'), ('Python'), ('JavaScript');
 
--- Insert data into developers
-INSERT INTO developers (username) VALUES ('developer1'), ('developer2'), ('developer3');
+-- Insert data into Developers
+INSERT INTO Developers (Username) VALUES ('developer1'), ('developer2'), ('developer3');
 
--- Insert data into scripts
-INSERT INTO scripts (dev_id, script_name, script_s3_uri, script_type) VALUES 
-    (1, 'script1', 's3://bucket/script1', 1),
-    (2, 'script2', 's3://bucket/script2', 2),
-    (3, 'script3', 's3://bucket/script3', 1),
-    (1, 'script4', 's3://bucket/script4', 2),
-    (2, 'script5', 's3://bucket/script5', 1);
+-- Insert data into Scripts
+INSERT INTO Scripts (DevId, TypeId, ScriptName, ScriptS3Url) VALUES 
+    (1, 1, 'script1', 's3://bucket/script1'),
+    (2, 2, 'script2', 's3://bucket/script2'),
+    (3, 1, 'script3', 's3://bucket/script3'),
+    (1, 2, 'script4', 's3://bucket/script4'),
+    (2, 3, 'script5', 's3://bucket/script5');

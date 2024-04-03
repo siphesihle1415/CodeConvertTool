@@ -1,19 +1,22 @@
-CREATE TABLE developers (
-    dev_id INT IDENTITY(1,1) PRIMARY KEY,
-    username VARCHAR(50) NOT NULL
+CREATE TABLE Developers (
+    DevId INT IDENTITY(1,1) PRIMARY KEY,
+    Username VARCHAR(50) UNIQUE NOT NULL ,
+    CreatedAt DATETIME DEFAULT GETDATE()
 );
 
-CREATE TABLE scripttypelookup (
-    type_id INT IDENTITY(1,1) PRIMARY KEY,
-    type VARCHAR(50) NOT NULL
+CREATE TABLE ScriptType (
+    TypeId INT IDENTITY(1,1) PRIMARY KEY,
+    TypeName VARCHAR(50) UNIQUE NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE()
 );
 
-CREATE TABLE scripts (
-    script_id INT IDENTITY(1,1) PRIMARY KEY,
-    dev_id INT NOT NULL FOREIGN KEY REFERENCES developers(dev_id),
-    script_name VARCHAR(50) NOT NULL,
-    script_s3_uri VARCHAR(100) NOT NULL,
-    script_type INT NOT NULL FOREIGN KEY REFERENCES scripttypelookup(type_id),
-    script_version INT NOT NULL DEFAULT 1,
-    last_updated DATETIME DEFAULT GETDATE()
+CREATE TABLE Scripts (
+    ScriptId INT IDENTITY(1,1) PRIMARY KEY,
+    DevId INT NOT NULL FOREIGN KEY REFERENCES Developers(DevId),
+    TypeId INT NOT NULL FOREIGN KEY REFERENCES ScriptType(TypeId),
+    ScriptName VARCHAR(50) NOT NULL,
+    ScriptS3Url VARCHAR(100) UNIQUE NOT NULL,
+    ScriptVersion INT NOT NULL DEFAULT 1,
+    LastUpdated DATETIME DEFAULT GETDATE(),
+    CreatedAt DATETIME DEFAULT GETDATE()
 );
