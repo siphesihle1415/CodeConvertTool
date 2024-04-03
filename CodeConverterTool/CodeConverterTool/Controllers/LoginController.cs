@@ -27,9 +27,16 @@ namespace CodeConverterTool.Controllers
             {
                 Method = Method.Post
             };
-            request.AddHeader("content-type", "application/json");
-            request.AddParameter("application/json", "{\"client_id\":\"" + Environment.GetEnvironmentVariable("CLIENT_ID") + "\",\"client_secret\":\"" + Environment.GetEnvironmentVariable("CLIENT_SECRET") + "\",\"audience\":\"https://localhost:7074/swagger/index.html/api\",\"grant_type\":\"client_credentials\"}", ParameterType.RequestBody);
+            request.AddHeader("Content-Type", "application/json");
+            string jsonBody = "{\"client_id\":\"" + Environment.GetEnvironmentVariable("CLIENT_ID") + "\",\"client_secret\":\"" + Environment.GetEnvironmentVariable("CLIENT_SECRET") + "\",\"audience\":\"https://localhost:7074/swagger/index.html/api\",\"grant_type\":\"client_credentials\"}";
+
+            request.AddParameter("application/json", jsonBody, ParameterType.RequestBody);
+
+            Console.WriteLine(request.Parameters.ToString());
+
             RestResponse response = client.Execute(request);
+
+            Console.WriteLine(response.StatusCode.ToString());
 
 
             if (response.IsSuccessful)

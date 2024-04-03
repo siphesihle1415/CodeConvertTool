@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeConverterTool.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CodeConverterTool.Controllers
 {
@@ -20,14 +21,14 @@ namespace CodeConverterTool.Controllers
             _context = context;
         }
 
-        // GET: api/Scripttypelookups
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Scripttypelookup>>> GetScripttypelookups()
         {
             return await _context.Scripttypelookups.ToListAsync();
         }
 
-        // GET: api/Scripttypelookups/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Scripttypelookup>> GetScripttypelookup(int id)
         {
@@ -41,8 +42,7 @@ namespace CodeConverterTool.Controllers
             return scripttypelookup;
         }
 
-        // PUT: api/Scripttypelookups/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutScripttypelookup(int id, Scripttypelookup scripttypelookup)
         {
@@ -72,8 +72,7 @@ namespace CodeConverterTool.Controllers
             return NoContent();
         }
 
-        // POST: api/Scripttypelookups
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Scripttypelookup>> PostScripttypelookup(Scripttypelookup scripttypelookup)
         {
@@ -83,7 +82,7 @@ namespace CodeConverterTool.Controllers
             return CreatedAtAction("GetScripttypelookup", new { id = scripttypelookup.TypeId }, scripttypelookup);
         }
 
-        // DELETE: api/Scripttypelookups/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteScripttypelookup(int id)
         {

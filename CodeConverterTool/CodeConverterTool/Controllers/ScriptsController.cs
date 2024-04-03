@@ -28,7 +28,7 @@ namespace CodeConverterTool.Controllers
             return await _context.Scripts.ToListAsync();
         }
 
-        // GET: api/Scripts/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Script>> GetScript(int id)
         {
@@ -42,8 +42,7 @@ namespace CodeConverterTool.Controllers
             return script;
         }
 
-        // PUT: api/Scripts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutScript(int id, Script script)
         {
@@ -73,8 +72,7 @@ namespace CodeConverterTool.Controllers
             return NoContent();
         }
 
-        // POST: api/Scripts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Script>> PostScript(Script script)
         {
@@ -84,7 +82,7 @@ namespace CodeConverterTool.Controllers
             return CreatedAtAction("GetScript", new { id = script.ScriptId }, script);
         }
 
-        // DELETE: api/Scripts/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteScript(int id)
         {
