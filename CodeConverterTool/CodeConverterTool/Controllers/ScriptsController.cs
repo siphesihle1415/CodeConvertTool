@@ -30,9 +30,21 @@ namespace CodeConverterTool.Controllers
 
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Script>> GetScript(int id)
+        public async Task<ActionResult<Script>> GetScript(char id)
         {
-            var script = await _context.Scripts.FindAsync(id);
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a Positive Integer.");
+            }
+
+            var script = await _context.Scripts.FindAsync(idValue);
 
             if (script == null)
             {
@@ -84,9 +96,21 @@ namespace CodeConverterTool.Controllers
 
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteScript(int id)
+        public async Task<IActionResult> DeleteScript(char id)
         {
-            var script = await _context.Scripts.FindAsync(id);
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a Positive Integer.");
+            }
+
+            var script = await _context.Scripts.FindAsync(idValue);
             if (script == null)
             {
                 return NotFound();

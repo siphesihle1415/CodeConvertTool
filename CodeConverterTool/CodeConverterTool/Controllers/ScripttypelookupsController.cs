@@ -30,9 +30,21 @@ namespace CodeConverterTool.Controllers
 
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Scripttypelookup>> GetScripttypelookup(int id)
+        public async Task<ActionResult<Scripttypelookup>> GetScripttypelookup(char id)
         {
-            var scripttypelookup = await _context.Scripttypelookups.FindAsync(id);
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a Positive Integer.");
+            }
+
+            var scripttypelookup = await _context.Scripttypelookups.FindAsync(idValue);
 
             if (scripttypelookup == null)
             {
@@ -84,9 +96,22 @@ namespace CodeConverterTool.Controllers
 
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteScripttypelookup(int id)
+        public async Task<IActionResult> DeleteScripttypelookup(char id)
         {
-            var scripttypelookup = await _context.Scripttypelookups.FindAsync(id);
+
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a Positive Integer.");
+            }
+
+            var scripttypelookup = await _context.Scripttypelookups.FindAsync(idValue);
             if (scripttypelookup == null)
             {
                 return NotFound();

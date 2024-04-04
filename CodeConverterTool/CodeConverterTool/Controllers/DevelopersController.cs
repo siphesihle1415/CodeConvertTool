@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeConverterTool.Models;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json.Linq;
 
 namespace CodeConverterTool.Controllers
 {
@@ -30,9 +31,23 @@ namespace CodeConverterTool.Controllers
 
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Developer>> GetDeveloper(int id)
+        public async Task<ActionResult<Developer>> GetDeveloper(char id)
         {
-            var developer = await _context.Developers.FindAsync(id);
+
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a positive integer");
+            }
+
+
+            var developer = await _context.Developers.FindAsync(idValue);
 
             if (developer == null)
             {
@@ -84,9 +99,21 @@ namespace CodeConverterTool.Controllers
 
         [Authorize]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDeveloper(int id)
+        public async Task<IActionResult> DeleteDeveloper(char id)
         {
-            var developer = await _context.Developers.FindAsync(id);
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a Positive Integer.");
+            }
+
+            var developer = await _context.Developers.FindAsync(idValue);
             if (developer == null)
             {
                 return NotFound();
