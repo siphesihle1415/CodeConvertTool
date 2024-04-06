@@ -1,4 +1,4 @@
-﻿using CodeConverterTool.Models;
+using CodeConverterTool.Models;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using Amazon;
