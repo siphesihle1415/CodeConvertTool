@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CodeConverterTool")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c3c25a787045a40d5265d95a57988ca83086abc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+284fce4b4afee439290781c3f77b17d275c300b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("CodeConverterTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CodeConverterTool")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

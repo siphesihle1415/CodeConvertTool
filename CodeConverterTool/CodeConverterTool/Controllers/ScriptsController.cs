@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeConverterTool.Models;
 using Microsoft.AspNetCore.Authorization;
+using Amazon.S3.Transfer;
+using Amazon.S3;
 
 namespace CodeConverterTool.Controllers
 {
@@ -16,10 +14,37 @@ namespace CodeConverterTool.Controllers
     {
         private readonly ConvertToolDbContext _context;
 
+
         public ScriptsController(ConvertToolDbContext context)
         {
             _context = context;
         }
+
+        [HttpPost("UploadScript")]
+        public async Task<IActionResult> UploadFileToS3(IFormFile file)
+        {
+            using var s3Client = new AmazonS3Client("", "", Amazon.RegionEndpoint.EUWest1);
+            using var fileTransferUtility = new TransferUtility(s3Client);
+
+            try
+            {
+                await fileTransferUtility.UploadAsync(file.OpenReadStream(), "codeconvertbucket", "key");
+                Console.WriteLine("Upload completed successfully.");
+                return Ok("File Uploaded");
+            }
+            catch (AmazonS3Exception e)
+            {
+                Console.WriteLine("Error encountered on server. Message:'{0}' when writing an object", e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unknown encountered on server. Message:'{0}' when writing an object", e.Message);
+            }
+
+            return Ok("Error Occurd");
+        }
+
+
 
         [Authorize]
         [HttpGet]
