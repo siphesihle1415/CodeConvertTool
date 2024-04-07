@@ -102,3 +102,7 @@ obj/**/*.xml
 
 # Ignore Visual Studio Team Services build directory
 [Bb]uild[Vv]2/
+
+# ignore secrets
+appsettings.json
+Properties/
