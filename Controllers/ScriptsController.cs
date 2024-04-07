@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeConverterTool.Models;
 using Microsoft.AspNetCore.Authorization;
+using Amazon.S3.Transfer;
+using Amazon.S3;
 
 namespace CodeConverterTool.Controllers
 {
@@ -16,10 +14,37 @@ namespace CodeConverterTool.Controllers
     {
         private readonly ConvertToolDbContext _context;
 
+
         public ScriptsController(ConvertToolDbContext context)
         {
             _context = context;
         }
+
+        [HttpPost("UploadScript")]
+        public async Task<IActionResult> UploadFileToS3(IFormFile file)
+        {
+            using var s3Client = new AmazonS3Client("", "", Amazon.RegionEndpoint.EUWest1);
+            using var fileTransferUtility = new TransferUtility(s3Client);
+
+            try
+            {
+                await fileTransferUtility.UploadAsync(file.OpenReadStream(), "codeconvertbucket", file.FileName);
+                Console.WriteLine("Upload completed successfully.");
+                return Ok("File Uploaded");
+            }
+            catch (AmazonS3Exception e)
+            {
+                Console.WriteLine("Error encountered on server. Message:'{0}' when writing an object", e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unknown encountered on server. Message:'{0}' when writing an object", e.Message);
+            }
+
+            return Ok("Error Occurd");
+        }
+
+
 
         [Authorize]
         [HttpGet]
@@ -28,11 +53,23 @@ namespace CodeConverterTool.Controllers
             return await _context.Scripts.ToListAsync();
         }
 
-        // GET: api/Scripts/5
+        [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Script>> GetScript(int id)
+        public async Task<ActionResult<Script>> GetScript(char id)
         {
-            var script = await _context.Scripts.FindAsync(id);
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a Positive Integer.");
+            }
+
+            var script = await _context.Scripts.FindAsync(idValue);
 
             if (script == null)
             {
@@ -42,8 +79,7 @@ namespace CodeConverterTool.Controllers
             return script;
         }
 
-        // PUT: api/Scripts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutScript(int id, Script script)
         {
@@ -73,8 +109,7 @@ namespace CodeConverterTool.Controllers
             return NoContent();
         }
 
-        // POST: api/Scripts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Script>> PostScript(Script script)
         {
@@ -84,11 +119,23 @@ namespace CodeConverterTool.Controllers
             return CreatedAtAction("GetScript", new { id = script.ScriptId }, script);
         }
 
-        // DELETE: api/Scripts/5
+        [Authorize]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteScript(int id)
+        public async Task<IActionResult> DeleteScript(char id)
         {
-            var script = await _context.Scripts.FindAsync(id);
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a Positive Integer.");
+            }
+
+            var script = await _context.Scripts.FindAsync(idValue);
             if (script == null)
             {
                 return NotFound();

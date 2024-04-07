@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CodeConverterTool.Models;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json.Linq;
 
 namespace CodeConverterTool.Controllers
 {
@@ -28,11 +29,25 @@ namespace CodeConverterTool.Controllers
             return await _context.Developers.ToListAsync();
         }
 
-
+        [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Developer>> GetDeveloper(int id)
+        public async Task<ActionResult<Developer>> GetDeveloper(char id)
         {
-            var developer = await _context.Developers.FindAsync(id);
+
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a positive integer");
+            }
+
+
+            var developer = await _context.Developers.FindAsync(idValue);
 
             if (developer == null)
             {
@@ -42,7 +57,7 @@ namespace CodeConverterTool.Controllers
             return developer;
         }
 
-
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDeveloper(int id, Developer developer)
         {
@@ -72,7 +87,7 @@ namespace CodeConverterTool.Controllers
             return NoContent();
         }
 
-
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Developer>> PostDeveloper(Developer developer)
         {
@@ -82,11 +97,23 @@ namespace CodeConverterTool.Controllers
             return CreatedAtAction("GetDeveloper", new { id = developer.DevId }, developer);
         }
 
-
+        [Authorize]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDeveloper(int id)
+        public async Task<IActionResult> DeleteDeveloper(char id)
         {
-            var developer = await _context.Developers.FindAsync(id);
+            if (!Char.IsDigit(id))
+            {
+                return BadRequest("Invalid ID format");
+            }
+
+            int idValue = int.Parse("" + id);
+
+            if (idValue <= 0)
+            {
+                return BadRequest("Invalid ID format. Must be a Positive Integer.");
+            }
+
+            var developer = await _context.Developers.FindAsync(idValue);
             if (developer == null)
             {
                 return NotFound();
