@@ -3,6 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using Amazon;
 using Amazon.Runtime;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Azure.Core;
+using System.Web;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CodeConverterTool.Controllers
 {
@@ -20,31 +27,77 @@ namespace CodeConverterTool.Controllers
         [HttpPost]
         public async Task<IActionResult> Login()
         {
-            var RestClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT"));
+            string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE");
+
+            var RestClient = new RestClient(deviceDomain);
             RestRequest request = new RestRequest
             {
                 Method = Method.Post
             };
-            request.AddHeader("Content-Type", "application/json");
-            string jsonBody = "{\"client_id\":\"" + Environment.GetEnvironmentVariable("CLIENT_ID") + "\",\"client_secret\":\"" + Environment.GetEnvironmentVariable("CLIENT_SECRET") + "\",\"audience\":\"https://localhost:7074/swagger/index.html/api\",\"grant_type\":\"client_credentials\"}";
+            string helperString = "client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID") + "&scope=openid profile email&audience=https://localhost:7074/swagger/index.html/api";
 
-            request.AddParameter("application/json", jsonBody, ParameterType.RequestBody);
 
-            Console.WriteLine(request.Parameters.ToString());
+
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            request.AddParameter("application/x-www-form-urlencoded", helperString, ParameterType.RequestBody);
 
             RestResponse response = RestClient.Execute(request);
 
-            Console.WriteLine(response.StatusCode.ToString());
+
+
+
 
 
             if (response.IsSuccessful)
             {
-                return Ok(response.Content);
+                JObject data = JObject.Parse(response.Content);
+
+                string deviceCode = (string)data["device_code"];
+                string verificationUriComplete = (string)data["verification_uri_complete"];
+
+                Console.WriteLine(verificationUriComplete);
+                try
+                {
+                    var tcs = new TaskCompletionSource<bool>();
+
+
+                    Timer timer = new Timer( _=>
+                    {
+                        var TokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN"));
+                        RestRequest request = new RestRequest
+                        {
+                            Method = Method.Post
+                        };
+                        request.AddHeader("content-type", "application/x-www-form-urlencoded");
+                        request.AddParameter("application/x-www-form-urlencoded", "grant_type=urn:ietf:params:oauth:grant-type:device_code&device_code=" + deviceCode + "&client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID"), ParameterType.RequestBody);
+                        RestResponse response = TokenClient.Execute(request);
+
+                        Console.WriteLine(response.Content);
+
+                        if (response.IsSuccessful)
+                        {
+                            tcs.SetResult(true);
+                        }
+
+                    }
+                    , null, 0, 10000);
+
+                    await tcs.Task;
+
+                } catch (Exception ex)
+                {
+                    return BadRequest(response.Content);
+                }
+
+                return Ok(response);
+
             }
             else
             {
                 return BadRequest(response.Content);
             }
         }
+
     }
 }

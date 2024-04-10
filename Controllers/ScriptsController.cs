@@ -25,6 +25,52 @@ namespace CodeConverterTool.Controllers
             _s3Client = new AmazonS3Client("", "", Amazon.RegionEndpoint.EUWest1);
         }
 
+        [HttpGet("GetObjectsByFolderName")]
+        public async Task<IActionResult> GetObjectsByFolderName(string folderName)
+        {
+
+            try
+            {
+                ListObjectsV2Request listObjectsV2Request = new ListObjectsV2Request
+                {
+                    BucketName = "codeconvertbucket",
+                    Prefix = folderName
+                };
+
+                ListObjectsV2Response listObjectsV2Response = await _s3Client.ListObjectsV2Async(listObjectsV2Request);
+
+                var ScriptObjects = listObjectsV2Response.S3Objects;
+                var simplifiedObjects = new List<SimplifiedS3Object>();
+
+                foreach (var scriptObject in ScriptObjects)
+                {
+                    var simplifiedObject = new SimplifiedS3Object
+                    {
+                        ETag = scriptObject.ETag,
+                        Key = scriptObject.Key,
+                        LastModified = scriptObject.LastModified,
+                        Size = scriptObject.Size
+                    };
+                    simplifiedObjects.Add(simplifiedObject);
+                }
+
+                simplifiedObjects.RemoveAt(0);
+
+                return Ok(simplifiedObjects);
+
+            }
+            catch (AmazonS3Exception e)
+            {
+                Console.WriteLine("Error encountered on server. Message:'{0}' when writing an object", e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unknown encountered on server. Message:'{0}' when writing an object", e.Message);
+            }
+
+            return Ok("Error Occurd");
+        }
+
         [HttpGet("GetScriptVersionsByKey")]
         public async Task<IActionResult> GetScriptVersionsByKey(string prefix)
         {
@@ -64,7 +110,7 @@ namespace CodeConverterTool.Controllers
 
             if (string.IsNullOrEmpty(versionId) || string.IsNullOrEmpty(key))
             {
-                return BadRequest("Version ID an key is required.");
+                return Ok("Version ID an key is required.");
             }
 
             try
@@ -88,7 +134,7 @@ namespace CodeConverterTool.Controllers
 
                 if (!isValidId)
                 {
-                    return BadRequest("You Cannot access a script version that was deleted. The script version that you selected is a Delete Marker.");
+                    return Ok("You Cannot access a script version that was deleted. The script version that you selected is a Delete Marker.");
                 }
 
                 GetObjectRequest request = new GetObjectRequest
