@@ -32,7 +32,18 @@ builder.Services.AddDbContext<ConvertToolDbContext>(options => options.UseSqlSer
     )
 );
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
+
+//app.UseRouting();
+//app.UseAuthorization();
+
+/*app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+});*/
+
 
 var env = app.Environment;
 
