@@ -4,13 +4,13 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "LOGIN_AUTH_CLIENT": "https://dev-yr27mck7ia3usnqt.us.auth0.com/oauth/token",
-        "CLIENT_ID": "pPNBPsMDqToMVfXEwTab68tdHzTckKAU",
-        "CLIENT_SECRET": "S86dm4AKK63EkJQblwFz6Y1DS_ZM98MzXzBAB6RnP8ZKw3p_u40u2uPmU6hcbYLl",
-        "OPTIONS_AUTHORITY": "https://dev-yr27mck7ia3usnqt.us.auth0.com/"
-      },
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "LOGIN_AUTH_CLIENT_TOKEN": "https://dev-yr27mck7ia3usnqt.us.auth0.com/oauth/token",
+            "LOGIN_AUTH_CLIENT_DEVICE": "https://dev-yr27mck7ia3usnqt.us.auth0.com/oauth/device/code",
+            "CLI_CLIENT_ID": "ga6wIMJr6838t33fO20T9wxlXOOkTTvf",
+            "AUTH_DOMAIN": "https://dev-yr27mck7ia3usnqt.us.auth0.com/"
+        },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7074;http://localhost:5152"
     },
