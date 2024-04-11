@@ -56,6 +56,7 @@ namespace CodeConverterTool.Controllers
                 string deviceCode = (string)data["device_code"];
                 string verificationUriComplete = (string)data["verification_uri_complete"];
                 string accessCode = "";
+                JObject responseData = null;
 
                 Console.WriteLine(verificationUriComplete);
                 try
@@ -78,7 +79,7 @@ namespace CodeConverterTool.Controllers
 
                         if (response.IsSuccessful)
                         {
-                            JObject responseData = JObject.Parse(response.Content);
+                            responseData = JObject.Parse(response.Content);
                             accessCode = (string)responseData["access_token"];
                             tcs.SetResult(true);
                         }
