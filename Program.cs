@@ -10,6 +10,7 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using Auth0.AspNetCore.Authentication;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -39,7 +40,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
-builder.Services.AddMvc();
+builder.Services.AddMvc().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     c =>

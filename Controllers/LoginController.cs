@@ -24,7 +24,7 @@ namespace CodeConverterTool.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login()
         {
             string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE");
@@ -104,6 +104,89 @@ namespace CodeConverterTool.Controllers
             else
             {
                 return BadRequest(response.Content);
+            }
+        }
+
+
+        [HttpPost("InitiateLogin")]
+        public async Task<IActionResult> InitiateLogin()
+        {
+            try
+            {
+                string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE");
+                var restClient = new RestClient(deviceDomain);
+                var request = new RestRequest
+                {
+                    Method = Method.Post
+                };
+
+                string helperString = "client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID") + "&scope=openid profile email&audience=https://localhost:7074/swagger/index.html/api";
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddParameter("application/x-www-form-urlencoded", helperString, ParameterType.RequestBody);
+
+                var response = await restClient.ExecuteAsync(request);
+
+                if (response.IsSuccessful)
+                {
+                    JObject data = JObject.Parse(response.Content);
+                    string verificationUriComplete = (string)data["verification_uri_complete"];
+                    string deviceCode = (string)data["device_code"];
+                    string interVal = (string)data["interval"];
+
+
+                    return Ok(new 
+                    { 
+                           VerificationUriComplete = verificationUriComplete,
+                           deviceCode = deviceCode,
+                           interval = interVal
+                    });
+                }
+                else
+                {
+                    return BadRequest(response.Content);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("PollForAccessCode")]
+        public async Task<IActionResult> PollForAccessCode(JObject requestBody)
+        {
+            try
+            {
+                Console.WriteLine(requestBody.ToString());
+
+
+                string deviceCode = (string)requestBody["deviceCode"];
+
+                var tokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN"));
+                var restRequest = new RestRequest
+                {
+                    Method = Method.Post
+                };
+                restRequest.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                restRequest.AddParameter("application/x-www-form-urlencoded", "grant_type=urn:ietf:params:oauth:grant-type:device_code&device_code=" + deviceCode + "&client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID"), ParameterType.RequestBody);
+
+                var response = await tokenClient.ExecuteAsync(restRequest);
+
+                if (response.IsSuccessful)
+                {
+                    JObject responseData = JObject.Parse(response.Content);
+                    string accessCode = (string)responseData["access_token"];
+                    return Ok(new { AccessCode = accessCode });
+                }
+                else
+                {
+                    return BadRequest(response.Content);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
