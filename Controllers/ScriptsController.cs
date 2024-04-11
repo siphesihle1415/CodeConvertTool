@@ -25,6 +25,7 @@ namespace CodeConverterTool.Controllers
             _s3Client = new AmazonS3Client("", "", Amazon.RegionEndpoint.EUWest1);
         }
 
+        [Authorize]
         [HttpGet("GetObjectsByFolderName")]
         public async Task<IActionResult> GetObjectsByFolderName(string folderName)
         {
@@ -71,6 +72,7 @@ namespace CodeConverterTool.Controllers
             return Ok("Error Occurd");
         }
 
+        [Authorize]
         [HttpGet("GetScriptVersionsByKey")]
         public async Task<IActionResult> GetScriptVersionsByKey(string prefix)
         {
@@ -104,6 +106,7 @@ namespace CodeConverterTool.Controllers
             return Ok("Error Occurd");
         }
 
+        [Authorize]
         [HttpGet("GetScriptById")]
         public async Task<IActionResult> GetScriptByIdAsync(string key, string versionId)
         {
@@ -174,7 +177,7 @@ namespace CodeConverterTool.Controllers
             return Ok("Error Occurd");
         }
 
-
+        [Authorize]
         [HttpPost("UploadScript")]
         public async Task<IActionResult> UploadFileToS3(IFormFile file)
         {
