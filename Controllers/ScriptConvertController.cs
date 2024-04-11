@@ -8,7 +8,7 @@ using NuGet.Protocol;
 namespace CodeConverterTool.Controllers
 {
     [ApiController]
-	[Route("[controller]")]
+	[Route("api/[controller]")]
 	public class ScriptConvertController : ControllerBase
 	{
 
