@@ -55,6 +55,8 @@ namespace CodeConverterTool.Controllers
 
                 string deviceCode = (string)data["device_code"];
                 string verificationUriComplete = (string)data["verification_uri_complete"];
+                string accessCode = "";
+                JObject responseData = null;
 
                 Console.WriteLine(verificationUriComplete);
                 try
@@ -77,6 +79,8 @@ namespace CodeConverterTool.Controllers
 
                         if (response.IsSuccessful)
                         {
+                            responseData = JObject.Parse(response.Content);
+                            accessCode = (string)responseData["access_token"];
                             tcs.SetResult(true);
                         }
 
@@ -85,12 +89,16 @@ namespace CodeConverterTool.Controllers
 
                     await tcs.Task;
 
-                } catch (Exception ex)
+                    timer.Dispose(); 
+
+                }
+                catch (Exception ex)
                 {
                     return BadRequest(response.Content);
                 }
 
-                return Ok(response);
+
+                return Ok(accessCode);
 
             }
             else
