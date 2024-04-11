@@ -10,6 +10,7 @@ using Azure.Core;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Azure;
 
 namespace CodeConverterTool.Controllers
 {
@@ -215,8 +216,18 @@ namespace CodeConverterTool.Controllers
 
                 var DetailsResponse = await DetailsClient.ExecuteAsync(restRequest);
 
+                JObject responseData = JObject.Parse(DetailsResponse.Content);
+                string email = (string)responseData["email"];
+                string nickname = (string)responseData["nickname"];
+                return Ok(new 
+                {
+                    nickname = nickname,
+                    Email = email,
+                });
 
-                return Ok(DetailsResponse.Content);
+
+
+
             }
             catch (Exception ex)
             {
