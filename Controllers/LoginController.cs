@@ -183,7 +183,9 @@ namespace CodeConverterTool.Controllers
                 }
                 else
                 {
-                    return BadRequest(response.Content);
+                    JObject responseData = JObject.Parse(response.Content);
+                    string errorResponse = (string)responseData["error"];
+                    return BadRequest(new { Error = errorResponse });
                 }
             }
             catch (Exception ex)
@@ -201,14 +203,20 @@ namespace CodeConverterTool.Controllers
                 Console.WriteLine(requestBody.ToString());
 
 
-                string deviceCode = (string)requestBody["deviceCode"];
+                string token = (string)requestBody["Token"];
 
-                var tokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN"));
+                var DetailsClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_INFO"));
                 var restRequest = new RestRequest
+                {
+                    Method = Method.Post
+                };
+                restRequest.AddHeader("Content-Type", "application/json");
+                restRequest.AddHeader("Authorization", $"Bearer {token}");
+
+                var DetailsResponse = await DetailsClient.ExecuteAsync(restRequest);
 
 
-                
-
+                return Ok(DetailsResponse.Content);
             }
             catch (Exception ex)
             {
