@@ -132,13 +132,15 @@ namespace CodeConverterTool.Controllers
                     string verificationUriComplete = (string)data["verification_uri_complete"];
                     string deviceCode = (string)data["device_code"];
                     string interVal = (string)data["interval"];
+                    string expires_in = (string)data["expires_in"];
 
 
                     return Ok(new 
                     { 
                            VerificationUriComplete = verificationUriComplete,
                            deviceCode = deviceCode,
-                           interval = interVal
+                           interval = interVal,
+                           expires_in = expires_in
                     });
                 }
                 else
@@ -189,6 +191,34 @@ namespace CodeConverterTool.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpPost("GetUserInfo")]
+        public async Task<IActionResult> GetUserInfo(JObject requestBody)
+        {
+            try
+            {
+                Console.WriteLine(requestBody.ToString());
+
+
+                string deviceCode = (string)requestBody["deviceCode"];
+
+                var tokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN"));
+                var restRequest = new RestRequest
+
+
+                
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
 
     }
 }
