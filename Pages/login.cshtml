@@ -1,0 +1,36 @@
+﻿@page "/login"
+@model CodeConverterTool.Pages.loginModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+
+<body>
+    <form method="post" asp-page-handler="GetLink">
+        @Html.AntiForgeryToken()
+        <button type="submit">Get Link</button>
+    </form>
+
+    <form method="post" asp-page-handler="GetToken">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="token_link" value="@Model.linkUrl">
+        <button type="submit">Get Token</button>
+    </form>
+</body>
+
+<script> 
+    window.onload = function() {
+        var modelVariableValue = @Html.Raw(Json.Serialize(Model.linkUrl));
+        if(modelVariableValue != "null"){
+            window.open(modelVariableValue, '_blank');
+        }
+    }
+</script>
+
+</html>

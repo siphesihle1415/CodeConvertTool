@@ -1,0 +1,31 @@
+﻿@page "/upload"
+@model CodeConverterTool.Pages.UploadModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+</head>
+<body>
+
+    <form method="post" asp-page-handler="Back">
+        @Html.AntiForgeryToken()
+        <button type="submit">Back</button>
+    </form>
+
+    <form method="post" enctype="multipart/form-data" asp-page-handler="Upload">
+        @Html.AntiForgeryToken()
+        <label for="file">Select a file:</label><br>
+        <input type="file" id="file" name="file"><br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <h1>@Model.uploadStatus</h1>
+
+    
+
+</body>
+</html>

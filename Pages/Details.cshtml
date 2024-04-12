@@ -1,0 +1,49 @@
+﻿@page "/Details"
+@model CodeConverterTool.Pages.DetailsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View Uploaded</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <h1>Script Details</h1>
+
+    <h2>Versions for script @Model.ID: </h2>
+
+    <table class="table">
+
+    @foreach (var item in Model.zippedArrays)
+    {
+        <tr>
+              <td class="bg-primary text-white">>VersionID: @item.Item1</td>
+              <td class="bg-primary text-white">Last Modified: @item.Item2</td>
+              <td class="bg-primary text-white"><a href="https://codeconvertbucket.s3.eu-west-1.amazonaws.com/@Model.ID?versionId=@item.Item1">Download Version</a></td>  
+        </tr>
+
+        
+    }
+
+    </table>
+
+    <h2>Convert script @Model.ID to a different language </h2>
+
+    <form method="post" asp-page-handler="ConvertScript">
+        @Html.AntiForgeryToken()
+        <label for="textInput">Language to convert to:</label><br>
+        <input type="text" id="convertLanguage" name="convertLanguage"><br><br>
+        <label for="textInput">VersionID of script:</label><br>
+        <input type="text" id="versionID" name="versionID"><br><br>
+        <button type="submit">Convert Script</button>
+    </form>
+    
+
+    
+
+</body>
+</html>

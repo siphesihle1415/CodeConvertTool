@@ -1,0 +1,23 @@
+﻿@page "/viewUploaded"
+@model CodeConverterTool.Pages.ViewUploadedModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View Uploaded</title>
+</head>
+<body>
+
+    <h1>Uploaded Scripts</h1>
+    <h1>Select a scripts to view more details:</h1>
+
+    @foreach (var item in Model.keys)
+    {
+        <li><a asp-page="Details" asp-route-id="@item">@item</a></li>
+    }
+
+</body>
+</html>
