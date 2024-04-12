@@ -7,6 +7,11 @@ using Amazon.S3.Transfer;
 using Amazon.S3;
 using Amazon.S3.Model;
 using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
+using System.IO;
 
 namespace CodeConverterTool.Controllers
 {

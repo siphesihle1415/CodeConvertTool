@@ -10,6 +10,9 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using Auth0.AspNetCore.Authentication;
+using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;

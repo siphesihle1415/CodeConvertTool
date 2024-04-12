@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Dynamic;
+using System.Threading.Tasks;
+using System;
 
 namespace CodeConverterTool.Pages
 {

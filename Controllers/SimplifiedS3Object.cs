@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace CodeConverterTool.Controllers
 {
     internal class SimplifiedS3Object

@@ -11,6 +11,9 @@ using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Azure;
+using System;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace CodeConverterTool.Controllers
 {

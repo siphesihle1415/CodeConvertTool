@@ -1,3 +1,5 @@
+using System;
+using System.Net.Http;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +16,7 @@ namespace CodeConverterTool.Controllers
 
 		[Authorize]
 		[HttpPost("{apiKey}")]
-		public async Task<IActionResult> PostScriptConvert(string apiKey, Models.ScriptConvert scriptConvert)
+		public async System.Threading.Tasks.Task<IActionResult> PostScriptConvert(string apiKey, Models.ScriptConvert scriptConvert)
 		{
 			try
 			{
@@ -24,9 +26,9 @@ namespace CodeConverterTool.Controllers
 				var targetScript = scriptConvert.TargetScript;
 				var maxTokens = scriptConvert.MaxTokens;
 
-				using HttpClient client = new();
+				using System.Net.Http.HttpClient client = new();
 
-				Console.WriteLine("*************");
+				//Console.WriteLine("*************");
 
 				client.BaseAddress = new Uri("https://api.openai.com/v1/");
 				client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
@@ -34,8 +36,8 @@ namespace CodeConverterTool.Controllers
 				var req = new
 				{
                     model,
-					prompt = $"Translate the following {sourceScript} code to {targetScript}: {content}",
-					max_tokens = maxTokens
+                    //prompt = $"Translate the following {sourceScript} code to {targetScript}: {content}",
+                    prompt = $"Translate the following code to {targetScript}, provide only the code, and nothing else. Make sure the code you provide is complete and well formatted : {content}",
 				};
 
 				var jsonReq = new StringContent(JsonConvert.SerializeObject(req), Encoding.UTF8, "application/json");
