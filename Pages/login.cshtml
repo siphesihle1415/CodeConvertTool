@@ -14,13 +14,13 @@
 <body>
     <form method="post" asp-page-handler="GetLink">
         @Html.AntiForgeryToken()
-        <button type="submit">Get Link</button>
+        <button type="submit">Sign in</button>
     </form>
 
     <form method="post" asp-page-handler="GetToken">
         @Html.AntiForgeryToken()
         <input type="hidden" name="token_link" value="@Model.linkUrl">
-        <button type="submit">Get Token</button>
+        <button type="submit">Set Token</button>
     </form>
 </body>
 

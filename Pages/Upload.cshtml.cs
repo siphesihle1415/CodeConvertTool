@@ -42,3 +42,9 @@ namespace CodeConverterTool.Pages
 
     }
 }
+
+/*
+ <form method="post" asp-page-handler="Back">
+        @Html.AntiForgeryToken()
+        <button type="submit">Back</button>
+    </form>*/

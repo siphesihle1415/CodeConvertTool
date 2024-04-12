@@ -11,11 +11,6 @@
 </head>
 <body>
 
-    <form method="post" asp-page-handler="Back">
-        @Html.AntiForgeryToken()
-        <button type="submit">Back</button>
-    </form>
-
     <form method="post" enctype="multipart/form-data" asp-page-handler="Upload">
         @Html.AntiForgeryToken()
         <label for="file">Select a file:</label><br>

@@ -193,7 +193,7 @@ namespace CodeConverterTool.Controllers
                 Console.WriteLine("Unknown encountered on server. Message:'{0}' when writing an object", e.Message);
             }
 
-            return Ok("Error Occurd");
+            return Ok("Error Occurred");
         }
 
         [HttpPost("UploadScript")]
@@ -216,7 +216,7 @@ namespace CodeConverterTool.Controllers
                 Console.WriteLine("Unknown encountered on server. Message:'{0}' when writing an object", e.Message);
             }
 
-            return Ok("Error Occurd");
+            return Ok("Error Occurred");
         }
 
 

@@ -92,6 +92,7 @@ app.UseSession();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
+    endpoints.MapFallbackToPage("/login");
 });
 
 
