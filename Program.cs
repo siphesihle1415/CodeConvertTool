@@ -1,5 +1,5 @@
 using CodeConverterTool.Models;
-
+using CodeConverterTool;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,9 +13,12 @@ using Auth0.AspNetCore.Authentication;
 using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
+
+DotEnv.Load(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
 
 builder.Services.AddAuthentication(options =>
 {
@@ -74,7 +77,7 @@ builder.Services.AddSwaggerGen(
     });
 
 builder.Services.AddDbContext<ConvertToolDbContext>(options => options.UseSqlServer(
-        builder.Configuration.GetConnectionString("ConvertToolConnectionString")
+        Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
     )
 );
 
