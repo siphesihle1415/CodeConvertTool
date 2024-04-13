@@ -28,7 +28,7 @@ builder.Services.AddAuthentication(options =>
 }).AddJwtBearer(options =>
 {
     options.Authority = Environment.GetEnvironmentVariable("AUTH_DOMAIN");
-    options.Audience = "https://localhost:7074/swagger/index.html/api";
+    options.Audience = "https://dev-yr27mck7ia3usnqt.us.auth0.com/v2/";
 
     options.Events = new JwtBearerEvents()
     {
