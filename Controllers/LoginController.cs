@@ -220,14 +220,14 @@ namespace CodeConverterTool.Controllers
                     JObject data = JObject.Parse(response.Content);
                     string verificationUriComplete = (string)data["verification_uri_complete"];
                     string deviceCode = (string)data["device_code"];
-                    string interVal = (string)data["interval"];
+                    string interval = (string)data["interval"];
 
 
                     return Ok(new
                     {
-                        VerificationUriComplete = verificationUriComplete,
-                        deviceCode = deviceCode,
-                        interval = interVal
+                        verificationUriComplete,
+                        deviceCode,
+                        interval
                     });
                 }
                 else
