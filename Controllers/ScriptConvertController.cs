@@ -27,7 +27,7 @@ namespace CodeConverterTool.Controllers
 				var targetScript = scriptConvert.TargetScript;
 				var maxTokens = scriptConvert.MaxTokens;
 
-				using System.Net.Http.HttpClient client = new();
+				using HttpClient client = new();
 
 				client.BaseAddress = new Uri("https://api.openai.com/v1/");
 				client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
