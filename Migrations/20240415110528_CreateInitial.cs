@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CodeConverterTool.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class CreateInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace CodeConverterTool.Migrations
                 {
                     dev_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    username = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true)
+                    username = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,7 +30,7 @@ namespace CodeConverterTool.Migrations
                 {
                     type_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    type = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true)
+                    type = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,8 +44,8 @@ namespace CodeConverterTool.Migrations
                     script_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     dev_id = table.Column<int>(type: "int", nullable: false),
-                    script_name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
-                    script_s3_uri = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    script_name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
+                    script_s3_uri = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
                     script_type = table.Column<int>(type: "int", nullable: false),
                     script_version = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     last_updated = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())")

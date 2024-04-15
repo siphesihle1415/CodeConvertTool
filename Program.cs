@@ -29,11 +29,45 @@ var config = builder.Configuration;
 
 DotEnv.Load(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
 
+builder.Services.AddRazorPages().AddRazorPagesOptions(options => { options.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute()); });
+
 builder.Services.AddControllers();
 
 builder.Services.AddMvc().AddNewtonsoftJson();
 
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})  
+.AddJwtBearer(options =>
+{
+    options.Authority = Environment.GetEnvironmentVariable("AUTH_DOMAIN");
+    options.Audience = Environment.GetEnvironmentVariable("AUDIENCE");
+
+    options.Events = new JwtBearerEvents()
+    {
+        OnAuthenticationFailed = c =>
+        {
+            c.NoResult();
+            c.Response.StatusCode = 401;
+            c.Response.ContentType = "text/plain";
+            return c.Response.WriteAsync(c.Exception.ToString());
+        },
+    };
+});
+
+builder.Services.AddAuthorization();
+
+builder.Services.AddDbContext<ConvertToolDbContext>(options => options.UseSqlServer(
+        Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
+    )
+);
+
+builder.Services.AddSession();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddSwaggerGen(
     c =>
@@ -63,27 +97,6 @@ builder.Services.AddSwaggerGen(
         }});
     });
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})  
-.AddJwtBearer(options =>
-{
-    options.Authority = Environment.GetEnvironmentVariable("AUTH_DOMAIN");
-    options.Audience = Environment.GetEnvironmentVariable("AUDIENCE");
-});
-
-builder.Services.AddDbContext<ConvertToolDbContext>(options => options.UseSqlServer(
-        Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
-    )
-);
-
-builder.Services.AddRazorPages().AddRazorPagesOptions(options => { options.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute()); }); ;
-
-builder.Services.AddSession();
-builder.Services.AddMemoryCache();
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -107,7 +120,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapFallbackToPage("/login");
 

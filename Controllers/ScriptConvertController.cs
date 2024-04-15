@@ -12,11 +12,12 @@ using System.Net.Http.Json;
 
 namespace CodeConverterTool.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class ScriptConvertController : ControllerBase
 	{
-		[HttpPost("{apiKey}")]
+		[HttpPost("ScriptConvertGPT/{apiKey}")]
+        [Authorize]
         public async System.Threading.Tasks.Task<IActionResult> PostScriptConvert(string apiKey, Models.ScriptConvert scriptConvert)
 		{
 			try
@@ -61,7 +62,8 @@ namespace CodeConverterTool.Controllers
 			}
 		}
 
-        [HttpPost]        
+        [HttpPost("ScriptConvertGemini")]
+        [Authorize]
         public async System.Threading.Tasks.Task<IActionResult> PostScriptConvert(ScriptConvertGemini scriptConvertRequest)
         {
             try
@@ -83,10 +85,10 @@ namespace CodeConverterTool.Controllers
                 };
 
                 using HttpClient client = new();
-                client.BaseAddress = new Uri("https://generativelanguage.googleapis.com/v1beta/models");
+                client.BaseAddress = new Uri("https://generativelanguage.googleapis.com");
                 client.DefaultRequestHeaders.Authorization = null;
 
-                var response = await client.PostAsJsonAsync($"/gemini-pro:generateContent?key={Environment.GetEnvironmentVariable("GEMINI_API_KEY")}", generateContentRequest);
+                var response = await client.PostAsJsonAsync($"/v1beta/models/gemini-pro:generateContent?key={Environment.GetEnvironmentVariable("GEMINI_API_KEY")}", generateContentRequest);
 
                 if (response.IsSuccessStatusCode)
                 {

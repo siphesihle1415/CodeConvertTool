@@ -281,6 +281,7 @@ namespace CodeConverterTool.Controllers
         }
 
         [HttpPost("GetUserInfo")]
+        [Authorize]
         public async Task<IActionResult> GetUserInfo(JObject requestBody)
         {
             try
