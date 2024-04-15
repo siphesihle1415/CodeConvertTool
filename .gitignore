@@ -106,3 +106,5 @@ obj/**/*.xml
 # ignore secrets
 appsettings.json
 Properties/
+
+.env
