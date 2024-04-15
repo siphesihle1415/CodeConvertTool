@@ -14,39 +14,27 @@ using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using IdentityModel.AspNetCore.AccessTokenValidation;
+using System.Text.Json;
+using System.Xml;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 DotEnv.Load(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    
-}).AddJwtBearer(options =>
-{
-    options.Authority = Environment.GetEnvironmentVariable("AUTH_DOMAIN");
-    options.Audience = "https://dev-yr27mck7ia3usnqt.us.auth0.com/v2/";
-
-    options.Events = new JwtBearerEvents()
-    {
-        OnAuthenticationFailed = c =>
-        {
-            c.NoResult();
-            c.Response.StatusCode = 401;
-            c.Response.ContentType = "text/plain";
-            return c.Response.WriteAsync(c.Exception.ToString());
-        },
-    };
-
-});
-
-builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+
 builder.Services.AddMvc().AddNewtonsoftJson();
+
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(
     c =>
     {
@@ -58,8 +46,8 @@ builder.Services.AddSwaggerGen(
             {
                 AuthorizationCode = new OpenApiOAuthFlow()
                 {
-                    AuthorizationUrl = new System.Uri(Environment.GetEnvironmentVariable("AUTH_DOMAIN")),
-                    TokenUrl = new System.Uri(Environment.GetEnvironmentVariable("AUTH_DOMAIN"))
+                    AuthorizationUrl = new Uri(Environment.GetEnvironmentVariable("AUTHORIZE")!),
+                    TokenUrl = new Uri(Environment.GetEnvironmentVariable("TOKEN")!)
                 }
             }
         });
@@ -68,43 +56,37 @@ builder.Services.AddSwaggerGen(
             new OpenApiSecurityScheme {
                 Reference = new OpenApiReference {
                     Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
+                    Id = "Bearer"
                 }
             },
-            new string[] {}
-        }
+            Array.Empty<string>()
+        }});
     });
-    });
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})  
+.AddJwtBearer(options =>
+{
+    options.Authority = Environment.GetEnvironmentVariable("AUTH_DOMAIN");
+    options.Audience = Environment.GetEnvironmentVariable("AUDIENCE");
+});
 
 builder.Services.AddDbContext<ConvertToolDbContext>(options => options.UseSqlServer(
         Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
     )
 );
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorPagesOptions(options => { options.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute()); }); ;
 
 builder.Services.AddSession();
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
-app.UseRouting();
-
-//app.UseAuthorization();
-//app.UseAuthentication();
-
-app.UseSession();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-    endpoints.MapFallbackToPage("/login");
-});
-
-
-var env = app.Environment;
-
-if (env.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
@@ -116,8 +98,21 @@ else
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
+app.UseSession();
+
+app.UseRouting();
+
+app.UseAuthentication();
+
+//app.UseAuthorization();
+
+app.MapFallbackToPage("/login");
+
 app.MapControllers();
+
+app.MapRazorPages();
 
 app.Run();

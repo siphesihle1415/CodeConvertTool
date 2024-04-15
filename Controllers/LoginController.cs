@@ -14,6 +14,7 @@ using Azure;
 using System;
 using System.Threading.Tasks;
 using System.Threading;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CodeConverterTool.Controllers
 {
@@ -33,14 +34,14 @@ namespace CodeConverterTool.Controllers
         [HttpPost("LoginGetLink")]
         public async Task<IActionResult> LoginGetLink()
         {
-            string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE");
+            string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE")!;
 
             var RestClient = new RestClient(deviceDomain);
             RestRequest request = new RestRequest
             {
                 Method = Method.Post
             };
-            string helperString = "client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID") + "&scope=openid profile email&audience=https://localhost:7074/swagger/index.html/api";
+            string helperString = "client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID") + $"&scope=openid profile email&audience={Environment.GetEnvironmentVariable("AUDIENCE")}";
 
 
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -51,7 +52,7 @@ namespace CodeConverterTool.Controllers
 
             if (response.IsSuccessful)
             {
-                JObject data = JObject.Parse(response.Content);
+                JObject data = JObject.Parse(response.Content!);
 
                 return Ok(data.ToString());
 
@@ -78,7 +79,7 @@ namespace CodeConverterTool.Controllers
 
                 Timer timer = new Timer(_ =>
                 {
-                    var TokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN"));
+                    var TokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN")!);
                     RestRequest request = new RestRequest
                     {
                         Method = Method.Post
@@ -91,8 +92,8 @@ namespace CodeConverterTool.Controllers
 
                     if (response.IsSuccessful)
                     {
-                        responseData = JObject.Parse(response.Content);
-                        accessCode = (string)responseData["access_token"];
+                        responseData = JObject.Parse(response.Content!);
+                        accessCode = (string)responseData["access_token"]!;
                         tcs.SetResult(true);
                     }
 
@@ -113,19 +114,17 @@ namespace CodeConverterTool.Controllers
 
         }
 
-
-
         [HttpPost("Login")]
         public async Task<IActionResult> Login()
         {
-            string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE");
+            string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE")!;
 
             var RestClient = new RestClient(deviceDomain);
             RestRequest request = new RestRequest
             {
                 Method = Method.Post
             };
-            string helperString = "client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID") + "&scope=openid profile email&audience=https://localhost:7074/swagger/index.html/api";
+            string helperString = "client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID") + $"&scope=openid profile email&audience={Environment.GetEnvironmentVariable("AUDIENCE")}";
 
 
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -136,14 +135,14 @@ namespace CodeConverterTool.Controllers
 
             if (response.IsSuccessful)
             {
-                JObject data = JObject.Parse(response.Content);
+                JObject data = JObject.Parse(response.Content!);
 
                 Console.WriteLine(data.ToString());
 
-                string deviceCode = (string)data["device_code"];
-                string verificationUriComplete = (string)data["verification_uri_complete"];
+                string deviceCode = (string)data["device_code"]!;
+                string verificationUriComplete = (string)data["verification_uri_complete"]!;
                 string accessCode = "";
-                JObject responseData = null;
+                JObject? responseData = null;
 
                 VerificationUri = verificationUriComplete;
 
@@ -155,7 +154,7 @@ namespace CodeConverterTool.Controllers
 
                     Timer timer = new Timer(_ =>
                     {
-                        var TokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN"));
+                        var TokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN")!);
                         RestRequest request = new RestRequest
                         {
                             Method = Method.Post
@@ -168,8 +167,8 @@ namespace CodeConverterTool.Controllers
 
                         if (response.IsSuccessful)
                         {
-                            responseData = JObject.Parse(response.Content);
-                            accessCode = (string)responseData["access_token"];
+                            responseData = JObject.Parse(response.Content!);
+                            accessCode = (string)responseData["access_token"]!;
                             tcs.SetResult(true);
                         }
 
@@ -196,20 +195,19 @@ namespace CodeConverterTool.Controllers
             }
         }
 
-
         [HttpPost("InitiateLogin")]
         public async Task<IActionResult> InitiateLogin()
         {
             try
             {
-                string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE");
+                string deviceDomain = Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_DEVICE")!;
                 var restClient = new RestClient(deviceDomain);
                 var request = new RestRequest
                 {
                     Method = Method.Post
                 };
 
-                string helperString = "client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID") + "&scope=openid profile email&audience=https://localhost:7074/swagger/index.html/api";
+                string helperString = "client_id=" + Environment.GetEnvironmentVariable("CLI_CLIENT_ID") + $"&scope=openid email profile&audience={Environment.GetEnvironmentVariable("AUDIENCE")}";
                 request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 request.AddParameter("application/x-www-form-urlencoded", helperString, ParameterType.RequestBody);
 
@@ -217,10 +215,10 @@ namespace CodeConverterTool.Controllers
 
                 if (response.IsSuccessful)
                 {
-                    JObject data = JObject.Parse(response.Content);
-                    string verificationUriComplete = (string)data["verification_uri_complete"];
-                    string deviceCode = (string)data["device_code"];
-                    string interval = (string)data["interval"];
+                    JObject data = JObject.Parse(response.Content!);
+                    string verificationUriComplete = (string)data["verification_uri_complete"]!;
+                    string deviceCode = (string)data["device_code"]!;
+                    string interval = (string)data["interval"]!;
 
 
                     return Ok(new
@@ -240,8 +238,7 @@ namespace CodeConverterTool.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-
+        
         [HttpPost("PollForAccessCode")]
         public async Task<IActionResult> PollForAccessCode(JObject requestBody)
         {
@@ -250,9 +247,9 @@ namespace CodeConverterTool.Controllers
                 Console.WriteLine(requestBody.ToString());
 
 
-                string deviceCode = (string)requestBody["deviceCode"];
+                string deviceCode = (string)requestBody["deviceCode"]!;
 
-                var tokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN"));
+                var tokenClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_TOKEN")!);
                 var restRequest = new RestRequest
                 {
                     Method = Method.Post
@@ -264,13 +261,17 @@ namespace CodeConverterTool.Controllers
 
                 if (response.IsSuccessful)
                 {
-                    JObject responseData = JObject.Parse(response.Content);
-                    string accessCode = (string)responseData["access_token"];
+                    JObject responseData = JObject.Parse(response.Content!);
+                    string accessCode = (string)responseData["access_token"]!;
                     return Ok(new { AccessCode = accessCode });
                 }
                 else
                 {
-                    return BadRequest(response.Content);
+                    JObject responseObj = JObject.Parse(response.Content!);
+                    return BadRequest(new
+                    {
+                        error = (string)responseObj["error"]!
+                    });
                 }
             }
             catch (Exception ex)
@@ -284,9 +285,9 @@ namespace CodeConverterTool.Controllers
         {
             try
             {
-                string token = (string)requestBody["token"];
+                string token = (string)requestBody["token"]!;
 
-                var DetailsClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_INFO"));
+                var DetailsClient = new RestClient(Environment.GetEnvironmentVariable("LOGIN_AUTH_CLIENT_INFO")!);
                 var restRequest = new RestRequest
                 {
                     Method = Method.Get
@@ -296,18 +297,14 @@ namespace CodeConverterTool.Controllers
 
                 var DetailsResponse = await DetailsClient.ExecuteAsync(restRequest);
 
-                JObject responseData = JObject.Parse(DetailsResponse.Content);
-                string email = (string)responseData["email"];
-                string nickname = (string)responseData["nickname"];
+                JObject responseData = JObject.Parse(DetailsResponse.Content!);
+                string email = (string)responseData["email"]!;
+                string nickname = (string)responseData["nickname"]!;
                 return Ok(new
                 {
                     nickname = nickname,
                     Email = email,
                 });
-
-
-
-
             }
             catch (Exception ex)
             {

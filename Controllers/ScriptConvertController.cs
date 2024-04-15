@@ -6,17 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NuGet.Protocol;
+using CodeConverterTool.Models;
+using System.Linq;
+using System.Net.Http.Json;
 
 namespace CodeConverterTool.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-	[Route("[controller]")]
-	public class ScriptConvertController : ControllerBase
+    public class ScriptConvertController : ControllerBase
 	{
-
-		[Authorize]
 		[HttpPost("{apiKey}")]
-		public async System.Threading.Tasks.Task<IActionResult> PostScriptConvert(string apiKey, Models.ScriptConvert scriptConvert)
+        public async System.Threading.Tasks.Task<IActionResult> PostScriptConvert(string apiKey, Models.ScriptConvert scriptConvert)
 		{
 			try
 			{
@@ -28,15 +29,12 @@ namespace CodeConverterTool.Controllers
 
 				using System.Net.Http.HttpClient client = new();
 
-				//Console.WriteLine("*************");
-
 				client.BaseAddress = new Uri("https://api.openai.com/v1/");
 				client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 
 				var req = new
 				{
                     model,
-                    //prompt = $"Translate the following {sourceScript} code to {targetScript}: {content}",
                     prompt = $"Translate the following code to {targetScript}, provide only the code, and nothing else. Make sure the code you provide is complete and well formatted : {content}",
 				};
 
@@ -50,7 +48,7 @@ namespace CodeConverterTool.Controllers
 
 					var parsedResponse = JObject.Parse(jsonResponse);
 
-					return Ok(parsedResponse["choices"][0]["text"].ToString());
+					return Ok(parsedResponse["choices"]![0]!["text"]!.ToString());
 				}
 				else
 				{
@@ -62,5 +60,57 @@ namespace CodeConverterTool.Controllers
 				return StatusCode(500, ex.Message);
 			}
 		}
-	}
+
+        [HttpPost]        
+        public async System.Threading.Tasks.Task<IActionResult> PostScriptConvert(ScriptConvertGemini scriptConvertRequest)
+        {
+            try
+            {
+                var part = new Part
+                {
+                    Text = $"Convert this {scriptConvertRequest.Source} code {scriptConvertRequest.Content} to {scriptConvertRequest.Target} (without backticks)"
+                };
+
+                var content = new Content
+                {
+                    Parts = [part]
+                };
+
+                var generateContentRequest = new GenerateContentRequest
+                {
+                    Contents = [content]
+
+                };
+
+                using HttpClient client = new();
+                client.BaseAddress = new Uri("https://generativelanguage.googleapis.com/v1beta/models");
+                client.DefaultRequestHeaders.Authorization = null;
+
+                var response = await client.PostAsJsonAsync($"/gemini-pro:generateContent?key={Environment.GetEnvironmentVariable("GEMINI_API_KEY")}", generateContentRequest);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    using var jsonResponse = await response.Content.ReadAsStreamAsync();
+
+                    var generateContentResponse = System.Text.Json.JsonSerializer.Deserialize<GenerateContentResponse>(jsonResponse);
+
+                    string modelResponse = String.Join("", generateContentResponse?.Candidates?[0].Content?.Parts?.Select(part => part.Text)!);
+
+                    string trimmedResponse = modelResponse.Contains('`') ? String.Join('\n', modelResponse.Split('\n').Skip(1).SkipLast(1)) : modelResponse;
+
+                    return Ok(
+                        new
+                        {
+                            response = trimmedResponse
+                        });
+                }
+
+                return StatusCode((int)response.StatusCode, response.ReasonPhrase);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+    }
 }

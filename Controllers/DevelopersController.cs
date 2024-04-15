@@ -22,14 +22,12 @@ namespace CodeConverterTool.Controllers
             _context = context;
         }
 
-        //[Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Developer>>> GetDevelopers()
         {
             return await _context.Developers.ToListAsync();
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Developer>> GetDeveloper(char id)
         {
@@ -57,7 +55,6 @@ namespace CodeConverterTool.Controllers
             return developer;
         }
 
-        //[Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDeveloper(int id, Developer developer)
         {
@@ -87,7 +84,6 @@ namespace CodeConverterTool.Controllers
             return NoContent();
         }
 
-        //[Authorize]
         [HttpPost]
         public async Task<ActionResult<Developer>> PostDeveloper(Developer developer)
         {
@@ -97,7 +93,6 @@ namespace CodeConverterTool.Controllers
             return CreatedAtAction("GetDeveloper", new { id = developer.DevId }, developer);
         }
 
-        //[Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDeveloper(char id)
         {

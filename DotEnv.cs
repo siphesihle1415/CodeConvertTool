@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace CodeConverterTool;
 
@@ -16,10 +17,10 @@ public static class DotEnv
                 '=',
                 StringSplitOptions.RemoveEmptyEntries);
 
-            if (parts.Length != 2)
+            if (parts.Length < 2)
                 continue;
 
-            Environment.SetEnvironmentVariable(parts[0], parts[1]);
+            Environment.SetEnvironmentVariable(parts[0], String.Join("=", parts.Skip(1)));
         }
     }
 }

@@ -21,7 +21,6 @@ namespace CodeConverterTool.Controllers
             _context = context;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Scripttypelookup>>> GetScripttypelookups()
         {
@@ -54,7 +53,6 @@ namespace CodeConverterTool.Controllers
             return scripttypelookup;
         }
 
-        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutScripttypelookup(int id, Scripttypelookup scripttypelookup)
         {
@@ -84,7 +82,6 @@ namespace CodeConverterTool.Controllers
             return NoContent();
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Scripttypelookup>> PostScripttypelookup(Scripttypelookup scripttypelookup)
         {
@@ -94,7 +91,6 @@ namespace CodeConverterTool.Controllers
             return CreatedAtAction("GetScripttypelookup", new { id = scripttypelookup.TypeId }, scripttypelookup);
         }
 
-        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteScripttypelookup(char id)
         {
