@@ -2,6 +2,14 @@ version: "3.8"
 services:
   webapp:
     build: .
-    env_file: .env
+    environment:
+        LOGIN_AUTH_CLIENT_TOKEN: https://dev-al7fblvz6tm1vrzf.us.auth0.com/oauth/token
+        CLI_CLIENT_ID: 3TOXnC9c6gXhxgoPVDDllxyLfQLpLtNu
+        LOGIN_AUTH_CLIENT_DEVICE: https://dev-al7fblvz6tm1vrzf.us.auth0.com/oauth/device/code
+        AUTH_DOMAIN: https://dev-al7fblvz6tm1vrzf.us.auth0.com/
+        LOGIN_AUTH_CLIENT_INFO: https://dev-al7fblvz6tm1vrzf.us.auth0.com/userinfo
+        DB_CONNECTION_STRING: Server=converttooldbv2.c7u88aekecy0.us-east-1.rds.amazonaws.com;User ID=admin;Password=Y!M[F0{{01tW<6#MQ%tped_e<Ivf;Database=ConvertToolV2Db;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False
+        AUDIENCE: https://localhost:51559
+        GEMINI_API_KEY: AIzaSyDG56kq42JQTYKNtWCbM4gjIQpi67cJw8g
     ports:
       - 80:8080

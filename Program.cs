@@ -27,7 +27,7 @@ using System.Xml;
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
-DotEnv.Load(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
+//DotEnv.Load(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
 
 builder.Services.AddRazorPages().AddRazorPagesOptions(options => { options.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute()); });
 
